@@ -1,2 +1,2 @@
 # CIPHER
-Thickness-RefractiveIdex decoupling for Quantitative Phase Imaging
+Thickness-Refractive Index decoupling for Quantitative Phase Imaging
