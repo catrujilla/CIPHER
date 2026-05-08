@@ -71,7 +71,7 @@ The goal is to enable readers to reproduce the reported thickness and refractive
   Main script to reproduce results for the star phase target using the Optimized CIPHER implementation.
 
 - `star_input_data.mat`  
-  Input dataset used by `run_CIPHER_optimized_star.m`. This file contains the reconstructed phase map (in radians) and any auxiliary parameters required by the script (e.g., wavelength, medium refractive index, etc., depending on how the script is set up).
+  Input dataset used by `run_CIPHER_optimized_star.m`. This file contains the reconstructed phase map (in radians).
 
 ---
 
@@ -81,7 +81,7 @@ The goal is to enable readers to reproduce the reported thickness and refractive
 
 Toolboxes (recommended):
 - **Parallel Computing Toolbox** (for GPU acceleration via `gpuArray`, if enabled)
-- **Image Processing Toolbox** (if the script uses filtering, thresholding, or segmentation)
+- **Image Processing Toolbox** 
 
 Hardware:
 - GPU acceleration is optional. The code runs on CPU as well (slower).
