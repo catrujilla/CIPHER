@@ -1,4 +1,57 @@
-# Optimized CIPHER (MATLAB)
+# CIPHER
+
+**CIPHER (Cauchy-based Inverse Phase Hybrid Error Reduction)** is a fully computational framework to decouple **refractive index (RI)** and **thickness** from a *single* reconstructed quantitative phase image (QPI), including digital holographic microscopy (DHM) phase maps.
+
+In single-wavelength QPI, the measured phase at each pixel is proportional to the optical path length (OPL) through the specimen:
+
+\[
+\phi(x,y)=\frac{2\pi}{\lambda}\,\big(n(x,y,\lambda)-n_m\big)\,t(x,y),
+\]
+
+where \(\lambda\) is the illumination wavelength, \(n_m\) is the surrounding-medium RI, \(n\) is the sample RI, and \(t\) is the physical thickness. Because \(\phi\) depends on the **product** \((n-n_m)t\), RI and thickness are intrinsically coupled: many \((n,t)\) pairs can produce the same phase value, making direct inversion ill-posed without additional constraints.
+
+CIPHER reduces this ambiguity by incorporating a physically constrained **dispersion model** for the sample RI. In its current implementation, the RI is modeled using a two-parameter Cauchy form:
+
+\[
+n(\lambda)=n_1+\frac{n_2}{\lambda^2},
+\]
+
+which yields the forward phase model:
+
+\[
+\phi_{\text{model}}(x,y;n_1,n_2,t)=\frac{2\pi}{\lambda}\left(n_1+\frac{n_2}{\lambda^2}-n_m\right)t.
+\]
+
+Given a reconstructed phase value \(\phi_{\text{rec}}\) at a pixel, CIPHER estimates \((n_1,n_2,t)\) by minimizing a phase-mismatch cost (e.g., least squares):
+
+\[
+J=(\phi_{\text{rec}}-\phi_{\text{model}})^2,
+\]
+
+subject to physically meaningful bounds on \(n_1\), \(n_2\), and \(t\) and user-defined discretization steps.
+
+## Deterministic vs Optimized CIPHER
+
+### 1) Deterministic CIPHER (exhaustive full-grid)
+The deterministic implementation evaluates \(J\) on a discrete 3-D lattice spanning \((n_1,n_2,t)\) and selects the minimizer. This guarantees the global minimizer **on the discretized domain**, but the computational cost grows quickly with grid density.
+
+### 2) Optimized CIPHER (FAST full-grid; optional coarse-to-fine refinement)
+The optimized implementation accelerates the search by avoiding an explicit loop over thickness. For each \((n_1,n_2)\) grid point, it computes
+
+\[
+\text{denom}=\frac{2\pi}{\lambda}\left(n_1+\frac{n_2}{\lambda^2}-n_m\right), \qquad
+t^\*=\frac{\phi_{\text{rec}}}{\text{denom}},
+\]
+
+then **clamps** \(t^\*\) to \([t_{\min},t_{\max}]\) and **quantizes** it to the nearest allowed thickness grid value. This yields the same choice as a brute-force minimization over a *uniform* \(t\)-grid while reducing runtime dramatically. The method can be embedded in a **coarse-to-fine** strategy: start with coarse steps to locate the solution region, then progressively shrink step sizes and refine within a local window in parameter space.
+
+## Reproducibility and deterministic tie-breaking
+In discrete searches, multiple parameter triplets may yield nearly identical minima (within floating-point tolerance), especially in synthetic validations and across CPU/GPU implementations. CIPHER therefore includes an explicit **deterministic tie-breaking rule** (e.g., lexicographic selection of grid indices within a tolerance band) to ensure that the same minimizer is selected reproducibly across runs and platforms.
+
+## Practical notes
+- The method is applied **per pixel** (no spatial regularization is required), allowing sharp spatial variations of \(n\) and \(t\).
+- GPU acceleration is natural because cost evaluation over parameter grids is highly parallel.
+- Grid step sizes and bounds control the tradeoff between runtime and parameter resolution.
 
 This repository contains a minimal, reproducible MATLAB package to replicate optmized **CIPHER** decoupling results (refractive index and thickness) from a **single reconstructed phase map** of a calibrated star phase target.
 
