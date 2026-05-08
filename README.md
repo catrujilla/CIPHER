@@ -192,5 +192,4 @@ Clivens Joseph¹, Carlos Trujillo², Ana Doblas¹
 
 **Authors e-mails:**  
 Ana Doblas — adoblas@umassd.edu
-
 Carlos Trujillo — catrujilla@eafit.edu.co
