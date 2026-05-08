@@ -7,7 +7,6 @@
 %   n1 dimensionless
 %   n2 in um^2 (Cauchy: n(lambda)=n1 + n2/lambda^2)
 %   Authors: Ana Doblas, Carlos Trujillo
-%   Date: Febraury 04, 2026
 
 clear; close all; clc;
 
