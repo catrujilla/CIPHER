@@ -131,8 +131,8 @@ At a high level, `run_CIPHER_optimized_star.m`:
 ### Inputs
 - `star_input_data.mat` (loaded by the script)
 
-Typical variables inside may include:
-- `phi_map` (reconstructed phase map in radians)
+Typical variables inside the script include:
+- `phi_map` (reconstructed phase map in radians loaded from .mat file)
 - `lambda_um` or `lambda` (wavelength)
 - `nm` (surrounding medium refractive index)
 - Optional masks or reference maps (depending on your implementation)
@@ -144,7 +144,6 @@ If your script saves outputs (recommended), we suggest saving:
 - `t_map`, `n_map`, `n1_map`, `n2_map`, `res2_map`
 - Any filtered variants: `t_map_fil`, `n_map_fil`
 - A results `.mat` file (e.g., `outputs/star_results.mat`)
-- Exported figures (e.g., PNG/SVG/PDF)
 
 ---
 
@@ -179,7 +178,7 @@ save('star_results.mat','t_map','n_map','n1_map','n2_map','res2_map','opts','see
 
 ## How to Cite
 
-If you use this code or data, please cite our manuscript (under revision):
+If you use this code or data, please cite our manuscript (under revision inElsevier's  Measurements Journal):
 
 **Title of the Manuscript:**  
 *Metrological Decoupling of Refractive Index and Thickness in Quantitative Phase Imaging using Dispersion-Based Metrological Modeling*
