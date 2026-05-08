@@ -4,9 +4,7 @@
 
 In single-wavelength QPI, the measured phase at each pixel is proportional to the optical path length (OPL) through the specimen:
 
-\[
-\phi(x,y)=\frac{2\pi}{\lambda}\,\big(n(x,y,\lambda)-n_m\big)\,t(x,y),
-\]
+$\phi(x,y)=\frac{2\pi}{\lambda}\,(n(x,y,\lambda)-n_m)\,t(x,y)$
 
 where \(\lambda\) is the illumination wavelength, \(n_m\) is the surrounding-medium RI, \(n\) is the sample RI, and \(t\) is the physical thickness. Because \(\phi\) depends on the **product** \((n-n_m)t\), RI and thickness are intrinsically coupled: many \((n,t)\) pairs can produce the same phase value, making direct inversion ill-posed without additional constraints.
 
