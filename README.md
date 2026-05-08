@@ -178,7 +178,9 @@ save('star_results.mat','t_map','n_map','n1_map','n2_map','res2_map','opts','see
 
 ## How to Cite
 
-If you use this code or data, please cite our manuscript (under revision in Elsevier's  Measurements Journal):
+If you use this code or data, please cite our manuscript (under revision in Elsevier's  Measurement Journal):
+
+C. Joseph, C. Trujillo, and A. Doblas, “Metrological decoupling of refractive index and thickness in quantitative phase imaging using dispersion-based metrological modeling,” submitted for publication in Measurement (Elsevier), 2026.
 
 **Title of the Manuscript:**  
 *Metrological Decoupling of Refractive Index and Thickness in Quantitative Phase Imaging using Dispersion-Based Metrological Modeling*
