@@ -1,5 +1,6 @@
 %% run_CIPHER_optimized.m
 % Single-file runner + CIPHER solvers (analytic-t OR fast full-grid over n1,n2,t)
+% Optimized Version (if looking for deterministic version, check other script)
 % Units:
 %   lambda_um in micrometers
 %   t in micrometers
@@ -12,9 +13,8 @@ clear; close all; clc;
 
 %% -------------------- INPUT DATA --------------------
 % Define phi_map (radians). For example:
-% load('yourdata.mat','unwrap_star_background_zero');
+% load('star_input_data.mat','unwrap_star_background_zero');
 % phi_map = unwrap_star_background_zero;
-
 % If you already have it in workspace, just uncomment:
 
 %phi_map = unwrap_star_background_zero(200:800, 200:800); %(For fast tests)
@@ -51,7 +51,7 @@ opts = struct();
 
 % Choose mode:
 %   'analytic_t' : solves t* analytically, clamps to bounds (UNSTABLE)
-%   'full_grid'  : Fast version of Ana's original CIPHER (Choose this one!)
+%   'full_grid'  : Fast version of deterministic CIPHER (Choose this one!)
 opts.mode = 'full_grid';
 
 % Multi-level coarse-to-fine refinement (For the analytic_t option, ignore if running full_grid)
@@ -254,7 +254,7 @@ title('Perimeter Profile (Top → Right, 90°)');
 legend show; % Show legend for both profiles
 
 
-%% Statistical Analysis (following Ana's methodology)
+%% Statistical Analysis 
 
 mean_t_smooth = mean(t_smooth(:));
 std_t_smooth = std(t_smooth(:));
