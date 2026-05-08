@@ -190,5 +190,6 @@ Clivens Joseph¹, Carlos Trujillo², Ana Doblas¹
 ¹ Department of Electrical and Computer Engineering, University of Massachusetts Dartmouth, Dartmouth, MA, United States  
 ² Optics and Photonics Laboratory, School of Applied Science and Engineering, Universidad EAFIT, Medellín, Colombia
 
-**Corresponding Author:**  
+**Authors e-mails:**  
 Ana Doblas — adoblas@umassd.edu
+Carlos Trujillo — catrujilla@eafit.edu.co
